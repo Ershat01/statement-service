@@ -2,7 +2,7 @@ spring:
   application:
     name: statement-service
   datasource:
-    url: jdbc:postgresql://localhost:5432/reconciliation
+    url: jdbc:postgresql://${DB_HOST:localhost}:5432/reconciliation
     username: recon
     password: recon
   jpa:
