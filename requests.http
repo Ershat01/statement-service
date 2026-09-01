@@ -1,0 +1,19 @@
+### Импорт транзакции
+POST http://localhost:8080/api/v1/transactions
+Content-Type: application/json
+
+{
+  "externalId": "HALYK-2026-000001",
+  "accountIban": "KZ123456789012345678",
+  "amount": 150000.50,
+  "currency": "KZT",
+  "direction": "CREDIT",
+  "valueDate": "2026-08-20",
+  "description": "Оплата по счёту №443"
+}
+
+### Список по счёту
+GET http://localhost:8080/api/v1/transactions?accountIban=KZ123456789012345678
+
+### Сальдо
+GET http://localhost:8080/api/v1/transactions/balance?accountIban=KZ123456789012345678
