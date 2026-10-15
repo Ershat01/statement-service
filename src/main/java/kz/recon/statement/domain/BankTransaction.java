@@ -12,6 +12,7 @@ import jakarta.persistence.Table;
 
 import java.time.Instant;
 import java.time.LocalDate;
+import java.math.BigDecimal;
 
 @Entity
 @Table(name = "bank_transaction")
@@ -27,8 +28,8 @@ public class BankTransaction {
     @Column(name = "account_iban", nullable = false, length = 34)
     private String accountIban;
 
-    @Column(name = "amount", nullable = false)
-    private double amount;
+    @Column(name = "amount", nullable = false, precision = 19, scale = 2)
+    private BigDecimal amount;
 
     @Column(name = "currency", nullable = false, length = 3)
     private String currency;
@@ -69,8 +70,8 @@ public class BankTransaction {
     public String getAccountIban() { return accountIban; }
     public void setAccountIban(String accountIban) { this.accountIban = accountIban; }
 
-    public double getAmount() { return amount; }
-    public void setAmount(double amount) { this.amount = amount; }
+    public BigDecimal getAmount() { return amount; }
+    public void setAmount(BigDecimal amount) { this.amount = amount; }
 
     public String getCurrency() { return currency; }
     public void setCurrency(String currency) { this.currency = currency; }

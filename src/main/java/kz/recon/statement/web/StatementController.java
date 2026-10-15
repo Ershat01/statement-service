@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.math.BigDecimal;
 
 @RestController
 @RequestMapping("/api/v1/transactions")
@@ -55,7 +56,7 @@ public class StatementController {
     }
 
     @GetMapping("/balance")
-    public double balance(@RequestParam String accountIban) {
+    public BigDecimal balance(@RequestParam String accountIban) {
         return service.calculateBalance(accountIban);
     }
 }

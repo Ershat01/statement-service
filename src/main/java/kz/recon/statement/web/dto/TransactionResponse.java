@@ -5,12 +5,13 @@ import kz.recon.statement.domain.Direction;
 import kz.recon.statement.domain.TransactionStatus;
 
 import java.time.LocalDate;
+import java.math.BigDecimal;
 
 public record TransactionResponse(
         Long id,
         String externalId,
         String accountIban,
-        double amount,
+        BigDecimal amount,
         String currency,
         Direction direction,
         LocalDate valueDate,

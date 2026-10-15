@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -42,14 +43,14 @@ public class StatementService {
      * Итоговое сальдо по счёту: приход минус расход.
      */
     @Transactional(readOnly = true)
-    public double calculateBalance(String accountIban) {
+    public BigDecimal calculateBalance(String accountIban) {
         List<BankTransaction> transactions = repository.findByAccountIban(accountIban);
-        double balance = 0;
+        BigDecimal balance = BigDecimal.ZERO;
         for (BankTransaction tx : transactions) {
             if (tx.getDirection() == Direction.CREDIT) {
-                balance += tx.getAmount();
+                balance = balance.add(tx.getAmount());
             } else {
-                balance -= tx.getAmount();
+                balance = balance.subtract(tx.getAmount());
             }
         }
         return balance;
