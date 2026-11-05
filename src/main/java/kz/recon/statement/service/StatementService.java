@@ -25,6 +25,9 @@ public class StatementService {
     @Transactional
     public BankTransaction importTransaction(BankTransaction transaction) {
         log.debug("Импорт транзакции externalId={}", transaction.getExternalId());
+        if (repository.existsByExternalId(transaction.getExternalId())) {
+            throw new DuplicateTransactionException(transaction.getExternalId());
+        }
         return repository.save(transaction);
     }
 

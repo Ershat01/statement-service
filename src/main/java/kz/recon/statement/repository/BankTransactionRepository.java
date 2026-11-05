@@ -11,4 +11,6 @@ public interface BankTransactionRepository extends JpaRepository<BankTransaction
     List<BankTransaction> findByAccountIban(String accountIban);
 
     Optional<BankTransaction> findByExternalId(String externalId);
+    
+    boolean existsByExternalId(String externalId);
 }
